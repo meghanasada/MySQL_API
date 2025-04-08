@@ -7,13 +7,16 @@ app.use(cors());
 app.use(express.json());
 
 // Replace with your actual MySQL details
+require('dotenv').config(); // Add at the top of your file
+
 const db = mysql.createConnection({
-  host: 'srv840.hstgr.io',        // e.g., your-db-host.com
-  port: 3306,   
-  user: 'u567123576_psirisha',             // your DB user
-  password: 'PnSiri@123', // your DB password
-  database: 'u567123576_testc1'        // your DB name
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
+
 
 // Connect to MySQL
 db.connect(err => {
